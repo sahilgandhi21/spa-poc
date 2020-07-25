@@ -1,19 +1,25 @@
 import React from 'react'
 import e from '../event-bus'
+import ReactDOM from 'react-dom';
 
 export default class Root extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      message: 'When Angular receives message, we should see a confirmation here 😎'
+      personId : window.location.hash.split('/') ? window.location.hash.split('/')[2] : 0
+      //message : 'When Angular receives message, we should see a confirmation here 😎'
     }
 
-    this.messageHandler = this.messageHandler.bind(this)
+    // this.messageHandler = this.messageHandler.bind(this)
   }
 
   componentDidMount() {
     e.on('received', this.messageHandler)
+    const apiUrl = 'https://reqres.in/api/users?id=' + this.state.personId;
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((resp) => console.log('This is your data', resp['data']));
   }
 
   componentWillUnmount() {
@@ -49,3 +55,12 @@ export default class Root extends React.Component {
     )
   }
 }
+
+/* ReactDOM.render((
+  <Router>
+     <Route path = "/" component = {Root}>
+        <IndexRoute component = {Home} />
+        <Route path = "detail/id" component = {Root} />
+     </Route>
+  </Router>
+), document.getElementById('app')) */

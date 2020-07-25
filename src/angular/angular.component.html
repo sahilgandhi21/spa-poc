@@ -40,15 +40,12 @@ a:active {
 </style>  
 <div style="margin-top: 25px;">
     <h1>List View (Built on Angular)</h1>
-    <p>{{message}}</p>
-     
-    <table>
+     <table>
         <thead>
             <td>ID</td>
             <td>First_name</td>
             <td>Last_name</td>
             <td>Email</td>
-            <!-- <td>Image</td> -->
             <td>Details</td>
         </thead>
         <tbody>
@@ -57,8 +54,7 @@ a:active {
             <td>{{person.first_name}}</td>
             <td>{{person.last_name}}</td>
             <td>{{person.email}}</td>
-            <!-- <td><img src="{{person.avatar}}" alt=""></td> -->
-            <td><a href="/#/detail">Click for details</a></td>
+            <td><a href="/#/detail/{{person.id}}">Click for details</a></td>
             </tr>
         </tbody>
 

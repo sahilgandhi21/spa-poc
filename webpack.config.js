@@ -16,6 +16,7 @@ module.exports = {
 			'reflect-metadata',
 			'react',
 			'react-dom',
+			'jest'
 		],
 	},
 	output: {

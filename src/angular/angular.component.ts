@@ -7,7 +7,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   templateUrl: '/src/angular/angular.component.html'
 })
 export default class AngularApp {
-  message: string = "Message from React should appear here 😱";
+  // message: string = "Message from React should appear here 😱";
   listData: any[] = [];
 
   constructor(@Inject(ChangeDetectorRef) private changeDetector: ChangeDetectorRef, 
@@ -16,14 +16,18 @@ export default class AngularApp {
   }
 
   getData() {
-    this.http.get('https://reqres.in/api/users').subscribe(results => 
-    this.listData =  results['data']
-    );
+    this.http.get('https://reqres.in/api/users?page=1').subscribe(results1 => 
+      { 
+        this.http.get('https://reqres.in/api/users?page=2').subscribe(results2 => 
+          this.listData =  [...results1['data'], ...results2['data']]
+        );
+      }
+    );  
   }
 
   ngAfterContentInit() {
     e.on('message', message => {
-      this.message = message.text
+      //this.message = message.text
       this.changeDetector.detectChanges()
       this.returnMessageToReactWhenReceived()
     })
