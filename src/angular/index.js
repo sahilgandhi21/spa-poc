@@ -29,18 +29,6 @@ const ngLifecycles = singleSpaAngular({
 export const bootstrap = props => ngLifecycles.bootstrap(props)
 
 export const mount = props => ngLifecycles.mount(props)
-/* export function mount(props) {
-  return Promise
-    .resolve()
-    .then(() => {
-      let el = document.getElementById('angular')
-  if (!el) {
-    el = document.createElement('div')
-    el.id = 'angular'
-    document.body.appendChild(el)
-  }
-    })
-} */
 
 export function unmount(props) {
   return Promise

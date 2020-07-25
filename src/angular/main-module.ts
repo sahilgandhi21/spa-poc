@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { HttpClientModule } from'@angular/common/http'
-import AngularApp from './index.component.ts'
+import AngularApp from './angular.component.ts'
 import { enableProdMode } from '@angular/core'
 import { APP_BASE_HREF, CommonModule } from "@angular/common"
 
