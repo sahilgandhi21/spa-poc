@@ -1,0 +1,66 @@
+<style>
+    table, th , td {
+      border: 1px solid grey;
+      border-collapse: collapse;
+      padding: 5px;
+    }
+    
+    table tr:nth-child(odd) {
+      background-color: #f1f1f1;
+    }
+    
+    table tr:nth-child(even) {
+      background-color: #ffffff;
+    }
+
+a {
+color: maroon;
+}    
+
+/* unvisited link */
+a:link {
+  color: red;
+}
+
+/* visited link */
+a:visited {
+  color: green;
+}
+
+/* mouse over link */
+a:hover {
+  color: black;
+}
+
+/* selected link */
+a:active {
+  color: blue;
+}
+
+</style>  
+<div style="margin-top: 25px;">
+    <h1>List View (Built on Angular)</h1>
+    <p>{{message}}</p>
+     
+    <table>
+        <thead>
+            <td>ID</td>
+            <td>First_name</td>
+            <td>Last_name</td>
+            <td>Email</td>
+            <!-- <td>Image</td> -->
+            <td>Details</td>
+        </thead>
+        <tbody>
+            <tr *ngFor="let person of listData">
+            <td>{{person.id}}</td>
+            <td>{{person.first_name}}</td>
+            <td>{{person.last_name}}</td>
+            <td>{{person.email}}</td>
+            <!-- <td><img src="{{person.avatar}}" alt=""></td> -->
+            <td><a href="/#/detail">Click for details</a></td>
+            </tr>
+        </tbody>
+
+    </table>    
+</div>
