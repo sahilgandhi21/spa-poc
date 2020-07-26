@@ -9,6 +9,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 export default class AngularApp {
   // message: string = "Message from React should appear here 😱";
   listData: any[] = [];
+  isLoading: boolean = true
 
   constructor(@Inject(ChangeDetectorRef) private changeDetector: ChangeDetectorRef, 
   @Inject(HttpClient)private http: HttpClient) {
@@ -19,7 +20,10 @@ export default class AngularApp {
     this.http.get('https://reqres.in/api/users?page=1').subscribe(results1 => 
       { 
         this.http.get('https://reqres.in/api/users?page=2').subscribe(results2 => 
-          this.listData =  [...results1['data'], ...results2['data']]
+        setTimeout(()=> {
+          this.listData =  [...results1['data'], ...results2['data']];
+          this.isLoading = false;
+          }, 1500)
         );
       }
     );  

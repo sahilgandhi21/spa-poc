@@ -1,12 +1,12 @@
 
 <div style="margin-top: 25px;">
   <h1>List View (Built on Angular)</h1>
-  <table>
+  <div *ngIf="isLoading" class="loader"></div>
+  <table *ngIf="!isLoading">
     <thead>
       <td>ID</td>
       <td>First_name</td>
       <td>Last_name</td>
-      <td>Email</td>
       <td>Details</td>
     </thead>
     <tbody>
@@ -14,7 +14,6 @@
         <td>{{person.id}}</td>
         <td>{{person.first_name}}</td>
         <td>{{person.last_name}}</td>
-        <td>{{person.email}}</td>
         <td><a href="/#/detail/{{person.id}}">Click for details</a></td>
       </tr>
     </tbody>

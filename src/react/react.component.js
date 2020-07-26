@@ -13,6 +13,7 @@ export default class Root extends React.Component {
       detailData: "",
       message:
         "When Angular receives message, we should see a confirmation here 😎",
+      isLoading: "true",
     };
 
     // this.messageHandler = this.messageHandler.bind(this)
@@ -25,9 +26,14 @@ export default class Root extends React.Component {
       .then((response) => response.json())
       .then((resp) => {
         console.log("This is your data", resp["data"]);
-        this.setState({
-          detailData: resp["data"],
-        });
+        setTimeout(
+          () =>
+            this.setState({
+              detailData: resp["data"],
+              isLoading: "false",
+            }),
+          1500
+        );
       });
   }
 
@@ -51,33 +57,52 @@ export default class Root extends React.Component {
       <div style={{ marginTop: "25px" }}>
         <h1>Detail View (Built on React)</h1>
         <h2>User detail as follow</h2>
-        <table>
-        <tr>
-          <td><h3>Id</h3></td>
-          <td>{this.state.detailData.id}</td>
-          </tr>
+        <a href="/#/list">Back to List View</a>
 
-          <tr>
-          <td><h3>Photo</h3></td>
-          <td><img alt="" src={this.state.detailData.avatar} /></td>
-          </tr>
+        {this.state.isLoading && this.state.isLoading == "true" && (
+          <div className="loader"></div>
+        )}
 
-          <tr>
-          <td><h3>First Name</h3></td>
-          <td>{this.state.detailData.first_name}</td>
-          </tr>
+        {this.state.isLoading && this.state.isLoading == "false" && (
+          <table>
+            <tr>
+              <td>
+                <h3>Id</h3>
+              </td>
+              <td>{this.state.detailData.id}</td>
+            </tr>
 
-          <tr>
-          <td><h3>Last Name</h3></td>
-          <td>{this.state.detailData.last_name}</td>
-          </tr>
+            <tr>
+              <td>
+                <h3>Photo</h3>
+              </td>
+              <td>
+                <img alt="" src={this.state.detailData.avatar} />
+              </td>
+            </tr>
 
-          <tr>
-          <td><h3>Email</h3></td>
-          <td>{this.state.detailData.email}</td>
-          </tr>
-         
-        </table>
+            <tr>
+              <td>
+                <h3>First Name</h3>
+              </td>
+              <td>{this.state.detailData.first_name}</td>
+            </tr>
+
+            <tr>
+              <td>
+                <h3>Last Name</h3>
+              </td>
+              <td>{this.state.detailData.last_name}</td>
+            </tr>
+
+            <tr>
+              <td>
+                <h3>Email</h3>
+              </td>
+              <td>{this.state.detailData.email}</td>
+            </tr>
+          </table>
+        )}
       </div>
     );
   }
