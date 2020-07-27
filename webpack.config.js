@@ -15,8 +15,7 @@ module.exports = {
 			'@angular/router',
 			'reflect-metadata',
 			'react',
-			'react-dom',
-			'jest'
+			'react-dom'
 		],
 	},
 	output: {
