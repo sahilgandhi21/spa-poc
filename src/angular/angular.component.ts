@@ -1,5 +1,4 @@
 import { Component, ChangeDetectorRef, Inject } from '@angular/core';
-import e from '../event-bus';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({ 
@@ -7,7 +6,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   templateUrl: '/src/angular/angular.component.html'
 })
 export default class AngularApp {
-  // message: string = "Message from React should appear here 😱";
   listData: any[] = [];
   isLoading: boolean = true
 
@@ -29,15 +27,4 @@ export default class AngularApp {
     );  
   }
 
-  ngAfterContentInit() {
-    e.on('message', message => {
-      //this.message = message.text
-      this.changeDetector.detectChanges()
-      this.returnMessageToReactWhenReceived()
-    })
-  }
-
-  returnMessageToReactWhenReceived() {
-    e.emit('received', { text: 'Woohoo! Hello from Angular! 🎉' })
-  }
 }

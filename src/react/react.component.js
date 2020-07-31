@@ -1,5 +1,4 @@
 import React from "react";
-import e from "../event-bus";
 import ReactDOM from "react-dom";
 
 export default class Root extends React.Component {
@@ -11,16 +10,11 @@ export default class Root extends React.Component {
         ? window.location.hash.split("/")[2]
         : 0,
       detailData: "",
-      message:
-        "When Angular receives message, we should see a confirmation here 😎",
       isLoading: "true",
     };
-
-    // this.messageHandler = this.messageHandler.bind(this)
   }
 
   componentDidMount() {
-    e.on("received", this.messageHandler);
     const apiUrl = "https://reqres.in/api/users?id=" + this.state.personId;
     fetch(apiUrl)
       .then((response) => response.json())
@@ -37,21 +31,7 @@ export default class Root extends React.Component {
       });
   }
 
-  componentWillUnmount() {
-    e.off("received", this.messageHandler);
-  }
-
-  messageHandler(message) {
-    this.setState({
-      message: message.text,
-    });
-  }
-
-  sendMessage() {
-    location.hash = "/list";
-    e.emit("message", { text: "Hello from React 👋" });
-  }
-
+  
   render() {
     return (
       <div style={{ marginTop: "25px" }}>
