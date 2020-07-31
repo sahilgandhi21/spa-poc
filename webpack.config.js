@@ -19,7 +19,7 @@ module.exports = {
 		],
 	},
 	output: {
-		publicPath: '/dist/',
+		publicPath: '/spa-poc/dist/',
 		filename: '[name].js',
 		path: path.resolve(__dirname, 'dist'),
 	},
